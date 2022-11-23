@@ -5,6 +5,7 @@ import (
     "github.com/gin-gonic/gin"
 )
 
+// Handler is core routes handler
 type Handler struct {
     services *service.Provider
 }
@@ -13,8 +14,11 @@ func NewHandler(services *service.Provider) *Handler {
     return &Handler{services: services}
 }
 
+// InitRoutes define app routes with middlewares
 func (h *Handler) InitRoutes() *gin.Engine {
     router := gin.New()
+    // Handle default app middlewares
+    router.Use(h.appMiddleware)
 
     router.Group("/api")
     {
@@ -29,8 +33,6 @@ func (h *Handler) InitRoutes() *gin.Engine {
             user.POST("/logout")
             user.PUT("/update")
             user.DELETE("/delete")
-
-            // TODO: Add handlers
         }
 
 //        tree := router.Group("/tree")
