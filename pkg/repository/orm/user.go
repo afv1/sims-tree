@@ -8,7 +8,6 @@ import (
     "github.com/afv1/sims-tree/pkg/dto"
     "github.com/afv1/sims-tree/pkg/repository"
     "strconv"
-    "time"
 )
 
 func (o *ORM) CreateUser(ctx context.Context, data dto.AuthUser) (*ent.User, error) {
@@ -19,8 +18,6 @@ func (o *ORM) CreateUser(ctx context.Context, data dto.AuthUser) (*ent.User, err
         Create().
         SetLogin(data.Login).
         SetPassword(data.Password).
-        SetComment("").
-        SetCreatedAt(time.Now()).
         Save(ctx)
 
     // TODO: Replace error output with presenter data instead of Ent errors

@@ -16,7 +16,6 @@ func newAuthService() *AuthService {
     return &AuthService{ORM: orm.NewORM()}
 }
 
-// TODO: Replace map with struct
 func (as *AuthService) Register(data dto.AuthUser) (*ent.User, error) {
     user, err := as.ORM.CreateUser(context.Background(), data)
 
@@ -27,7 +26,6 @@ func (as *AuthService) Register(data dto.AuthUser) (*ent.User, error) {
     return user, nil
 }
 
-// TODO: Replace map with struct
 func (as *AuthService) Login(data dto.AuthUser) (*ent.User, error) {
     user, err := as.ORM.QueryUser(context.Background(), data)
 
