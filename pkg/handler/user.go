@@ -5,7 +5,6 @@ import (
     "github.com/afv1/sims-tree/pkg/dto"
     "github.com/afv1/sims-tree/pkg/response"
     "github.com/gin-gonic/gin"
-    "github.com/sirupsen/logrus"
 )
 
 func (h *Handler) Register(ctx *gin.Context) {
