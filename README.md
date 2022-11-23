@@ -10,15 +10,22 @@ Install the dependencies.
 go mod download
 ```
 
-Copy .env.
+Copy .env file.
 
 ```sh
 cp .env.example .env
 ```
 
+Create Docker images for DB and Redis (working on complete Docker container)
+Set available ports for images! (e.g. postgre: -p xxxx:5432, redis: -p xxxx:6379)
+```sh
+docker run --name=sims-tree-db -e POSTGRES_PASSWORD='root' -p 5433:5432 -d --rm postgres
+docker run -d -p 6381:6379 redislabs/redismod
+```
+
 Fill .env properties with your data.
 
-## Updating database schemas
+## DB schema
 
 See [Ent.](https://entgo.io/docs/getting-started/) docs.
 
