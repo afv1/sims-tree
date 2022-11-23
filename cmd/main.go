@@ -29,15 +29,14 @@ func main() {
     }
 }
 
+// initApp load .env, init configs and migrate DB Schema
 func initApp() error {
-    // load .env
     err := godotenv.Load()
 
     if err != nil {
         return err
     }
 
-    // init app config
     cfg.InitApp()
     repository.Migrate()
 
