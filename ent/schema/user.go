@@ -22,6 +22,7 @@ func (User) Fields() []ent.Field {
             Optional(),
         field.Time("created_at").
             Default(time.Now),
+//        field.Time("deleted_at").Optional().Nillable(),
     }
 }
 
