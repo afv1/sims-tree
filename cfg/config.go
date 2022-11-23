@@ -46,6 +46,7 @@ type RedisCacheCfg struct {
     PoolSize string
 }
 
+// initDB ini DB config
 func initDB() DBCfg {
     return DBCfg{
         Driver:   os.Getenv("DB_DRIVER"),
@@ -58,6 +59,7 @@ func initDB() DBCfg {
     }
 }
 
+// initRedisPersist init Redis Persistent config
 func initRedisPersist() RedisPersistCfg {
     return RedisPersistCfg{
         Host:     os.Getenv("REDIS_PERSIST_HOST"),
@@ -68,6 +70,7 @@ func initRedisPersist() RedisPersistCfg {
     }
 }
 
+// initRedisCache init Redis Cache config
 func initRedisCache() RedisCacheCfg {
     return RedisCacheCfg{
         Host:     os.Getenv("REDIS_CACHE_HOST"),
@@ -78,6 +81,7 @@ func initRedisCache() RedisCacheCfg {
     }
 }
 
+// InitApp init App config
 func InitApp() {
     cookieTtl, _ := strconv.Atoi(os.Getenv("AUTH_COOKIE_TTL"))
     readTimeout, _ := strconv.Atoi(os.Getenv("APP_READ_TIMEOUT"))
