@@ -17,6 +17,7 @@ cp .env.example .env
 ```
 
 Create Docker images for DB and Redis (working on complete Docker container)
+
 Set available ports for images! (e.g. postgre: -p xxxx:5432, redis: -p xxxx:6379)
 ```sh
 docker run --name=sims-tree-db -e POSTGRES_PASSWORD='root' -p 5433:5432 -d --rm postgres
