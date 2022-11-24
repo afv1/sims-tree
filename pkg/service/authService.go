@@ -17,6 +17,8 @@ func newAuthService() *AuthService {
 }
 
 func (as *AuthService) Register(data dto.AuthUser) (*ent.User, error) {
+    data.Password = generatePasswordHash(data.Password)
+
     user, err := as.ORM.CreateUser(context.Background(), data)
 
     if err != nil {
@@ -27,7 +29,9 @@ func (as *AuthService) Register(data dto.AuthUser) (*ent.User, error) {
 }
 
 func (as *AuthService) Login(data dto.AuthUser) (*ent.User, error) {
-    user, err := as.ORM.QueryUser(context.Background(), data)
+    data.Password = generatePasswordHash(data.Password)
+
+    user, err := as.ORM.AuthUser(context.Background(), data)
 
     if err != nil {
         return nil, err
