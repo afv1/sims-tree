@@ -29,6 +29,23 @@ func (o *ORM) CreateUser(ctx context.Context, data dto.AuthUser) (*ent.User, err
     return u, nil
 }
 
+func (o *ORM) AuthUser(ctx context.Context, data dto.AuthUser) (*ent.User, error) {
+    client := repository.GetClient()
+    defer repository.CloseClient(client)
+
+    u, err := client.User.
+        Query().
+        Where(user.Login(data.Login)).
+        Where(user.Password(data.Password)).
+        Only(ctx)
+
+    if err != nil {
+        return nil, fmt.Errorf("could not authenticate user %s:%s", data.Login, err)
+    }
+
+    return u, nil
+}
+
 func (o *ORM) QueryUser(ctx context.Context, data dto.AuthUser) (*ent.User, error) {
     client := repository.GetClient()
     defer repository.CloseClient(client)
