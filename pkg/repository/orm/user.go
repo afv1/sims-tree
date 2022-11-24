@@ -14,6 +14,7 @@ func (o *ORM) CreateUser(ctx context.Context, data dto.AuthUser) (*ent.User, err
     client := repository.GetClient()
     defer repository.CloseClient(client)
 
+    // TODO: Hash data.Password before storing to DB
     u, err := client.User.
         Create().
         SetLogin(data.Login).
